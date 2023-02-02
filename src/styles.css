@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    margin:0;
+    padding:0;
+    box-sizing: 0;
+}
+
+body{
+    background-image: url("./assets/pexels-cottonbro-studio-3944405.jpg");
+    background-size: cover;
+    height: 100vh;
+
+    
+}
