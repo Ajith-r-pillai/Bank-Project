@@ -1,0 +1,45 @@
+
+    In dataservice
+
+
+register(uname:any,acno:any,pswd:any){
+    if(acno in this.UserDetails){
+        return false
+    }
+    else{
+        this.UserDetails[acno]={acno,username:uname,password:pswd,balance:0}
+        return true
+
+    }
+}
+
+
+
+In register.compontent.ts
+
+register(){
+    var uname=this.uname
+    var acno=this.acno
+    var  psw=this.psw
+
+    const result=this.ds.register(uname,acno,psw)
+
+    if(result){
+        alert('registered')
+    }
+    else{
+        alert("already exist")
+    }
+}
+
+
+
+this.currentuser=UserDetails.[acno][username]
+log(this.currentuser)
+
+
+
+
+
+
+

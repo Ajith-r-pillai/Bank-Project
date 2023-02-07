@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <h2>History</h2>
+        <div class="table" style="width:100%;display: flex; align-items:center ;justify-content: center;">
+        <table style="border: white 1px solid;width:50%;background-color:black;color: white;">
+            <tr style="border: white 1px solid" >
+                <td style="border: white 1px solid">Type</td>
+                <td style="border: white 1px solid"> Amount</td>
+            </tr>
+        <tr style="border: white 1px solid" *ngFor="let i of transactionData" >
+            <td style="border: white 1px solid">{{i.type}}</td>
+            <td style="border: white 1px solid">{{i.amount}}</td>
+        </tr>
+       
+        </table>
+
+          
+        </div>
+    </div>
+    
+</body>
+</html>
