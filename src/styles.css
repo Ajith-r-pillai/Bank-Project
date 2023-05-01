@@ -6,9 +6,12 @@
 }
 
 body{
-    background-image: url("./assets/pexels-cottonbro-studio-3944405.jpg");
+    background-image: url("https://i.postimg.cc/7LXfB6hM/pexels-cottonbro-studio-3944405.jpg");
     background-size: cover;
     height: 100vh;
 
     
+}
+.style{
+    opacity:0;
 }

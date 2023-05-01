@@ -10,46 +10,85 @@
 
 <body>
     <h1>Welcome {{user}}</h1>
-    <div class=" mt-1 w-100 d-flex  justify-content-center  align-items-center"> <a href="" routerLink="/transation">View History</a></div>
+    <div class="ms-5"><h4>{{datedetails | date:'medium'}}</h4></div>
+
+    <div class=" mt-1 w-80 d-flex justify-content-end">
+        <button type="button" (click)="deleteParent()" class="btn btn-danger ml-4">Delete</button>
+        <button type="button"  (click)="logout()" class="btn btn-primary ms-2  ">Logout</button>
+    </div>
+    <app-delete-confirm (onDelete)="Delete($event)" (oncancel)="cancel()"  [item]="acno"></app-delete-confirm>
+    <div  [ngClass]="acno?'style':' '" class=" mt-1 w-100 d-flex  justify-content-center  align-items-center"> <a href=""
+            routerLink="/transation">View History</a></div>
     <div class="container w-100 d-flex flex-row justify-content-center  align-items-center ">
-       
-    <div class=" container w-50 d-flex flex-column justify-content-center  align-items-center " > 
-        <h1 class="d-flex flex-row justify-content-center  align-items-center mt-5" style="color: rgb(24, 22, 22);">Deposite</h1>
-        <form action="" class=" p-5  align-items-center" style="background-color:rgba(0, 0, 0, 0.274); height: 30rem; width: 20rem;">
-              
+
+        <div [ngClass]="acno?'style':' '" class=" container w-50 d-flex flex-column justify-content-center  align-items-center ">
+            <h1 class="d-flex flex-row justify-content-center  align-items-center mt-5" style="color: rgb(24, 22, 22);">
+                Deposite</h1>
+            <form action="" [formGroup]='depositeForm' class=" p-5  align-items-center"
+                style="background-color:rgba(0, 0, 0, 0.274); height: 27rem; width: 20rem;">
+
                 <div class="mt-2 p-2">
-                    <input type="text"name="acno" id="acno" [(ngModel)]="acno" class="form-control" placeholder="Account Number">
+                    <input type="text" name="acno" id="acno" formControlName="acno" class="form-control"
+                        placeholder="Account Number">
+                </div>
+                <div *ngIf="this.depositeForm.get('acno')?.errors && this.depositeForm.get('acno')?.touched">
+                    <p class="text-danger"> in valid input</p>
                 </div>
                 <div class="mt-2 p-2">
-                    <input type="password"name="psw" id="psw" [(ngModel)]="psw"   class="form-control" placeholder="password">
+                    <input type="password" name="psw" id="psw" formControlName="psw" class="form-control"
+                        placeholder="password">
+                </div>
+                <div *ngIf="this.depositeForm.get('psw')?.errors && this.depositeForm.get('psw')?.touched">
+                    <p class="text-danger"> in valid input</p>
                 </div>
                 <div class="mt-2 p-2">
-                    <input type="text" name="amnt" id="amnt" [(ngModel)]="amnt" class="form-control" placeholder="Amount">
+                    <input type="text" name="amnt" id="amnt" formControlName="amnt" class="form-control"
+                        placeholder="Amount">
+                </div>
+                <div *ngIf="this.depositeForm.get('amnt')?.errors && this.depositeForm.get('amnt')?.touched">
+                    <p class="text-danger"> in valid input</p>
                 </div>
                 <div class="d-flex flex-row justify-content-center  align-items-center mt-5 w-5">
-                    <button  type="button" class="btn" (click)="deposite()" style="background-color: black; color: aliceblue;">Deposit</button>
+                    <button type="button" class="btn" (click)="deposite()"
+                        style="background-color: black; color: aliceblue;">Deposit</button>
                 </div>
             </form>
         </div>
-        <div class=" container w-50 d-flex flex-column justify-content-center  align-items-center " > 
-            <h1 class="d-flex flex-row justify-content-center  align-items-center mt-5" style="color: rgb(24, 22, 22);">Withdraw</h1>
-            <form action="" class=" p-5  align-items-center" style="background-color:rgba(0, 0, 0, 0.274); height: 30rem; width: 20rem;">
-                    >
-                    <div class="mt-2 p-2">
-                        <input type="text"name="acno1" id="acno1" [(ngModel)]="acno1" class="form-control" placeholder="Account Number">
-                    </div>
-                    <div class="mt-2 p-2">
-                        <input type="password"name="psw1" id="psw"  [(ngModel)]="psw1" class="form-control" placeholder="password">
-                    </div>
-                    <div class="mt-2 p-2">
-                       <input type="text" name="amnt1" id="acno1" [(ngModel)]="amnt1" class="form-control" placeholder="Amount">
-                    </div>
-                    <div class="d-flex flex-row justify-content-center  align-items-center mt-5 w-5">
-                        <button  type="button" class="btn" (click)="withdraw()"  style="background-color: black; color: aliceblue;">Withdraw</button>
-                    </div>
-                </form>
-            </div>
+        <div  [ngClass]="acno?'style':' '"  class=" container w-50 d-flex flex-column justify-content-center  align-items-center ">
+            <h1 class="d-flex flex-row justify-content-center  align-items-center mt-5" style="color: rgb(24, 22, 22);">
+                Withdraw</h1>
+            <form action="" class=" p-5  align-items-center" [formGroup]='withdrwForm'
+                style="background-color:rgba(0, 0, 0, 0.274); height: 27                                                    rem; width: 20rem;">
+
+                <div class="mt-2 p-2">
+                    <input type="text" name="acno1" id="acno1" formControlName="acno1" class="form-control"
+                        placeholder="Account Number">
+                </div>
+                <div *ngIf="this.withdrwForm.get('acno1')?.errors && this.withdrwForm.get('acno1')?.touched">
+                    <p class="text-danger"> in valid input</p>
+                </div>
+                <div class="mt-2 p-2">
+                    <input type="password" name="psw1" id="psw2" formControlName="psw2" class="form-control"
+                        placeholder="password">
+                </div>
+                <div *ngIf="this.withdrwForm.get('psw2')?.errors && this.withdrwForm.get('psw2')?.touched">
+                    <p class="text-danger"> in valid input</p>
+                </div>
+                <div class="mt-2 p-2">
+                    <input type="text" name="amnt1" id="amnt3" formControlName="amnt3" class="form-control"
+                        placeholder="Amount">
+                </div>
+                <div *ngIf="this.withdrwForm.get('amnt3')?.errors && this.withdrwForm.get('amnt3')?.touched">
+                    <p class="text-danger"> in valid input</p>
+                </div>
+                <div class="d-flex flex-row justify-content-center  align-items-center mt-5 w-5">
+                    <button type="button" class="btn" (click)="withdraw()"
+                        style="background-color: black; color: aliceblue;">Withdraw</button>
+                </div>
+            </form>
         </div>
+    </div>
     
 </body>
+
 </html>

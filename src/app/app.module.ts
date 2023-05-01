@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TransactionComponent } from './transaction/transaction.component';
+import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
+import{HttpClientModule}from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -15,12 +17,15 @@ import { TransactionComponent } from './transaction/transaction.component';
     LoginComponent,
     DashboardComponent,
     RegistrationComponent,
-    TransactionComponent
+    TransactionComponent,
+    DeleteConfirmComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

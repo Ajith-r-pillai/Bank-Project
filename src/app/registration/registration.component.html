@@ -13,16 +13,24 @@
 <body>
     <div class=" container w-50 d-flex flex-column justify-content-center  align-items-center " > 
         <h1 class="d-flex flex-row justify-content-center  align-items-center mt-5" style="color: rgb(24, 22, 22);">Sign up</h1>
-        <form action="" class=" p-5  align-items-center" style="background-color:rgba(0, 0, 0, 0.274); height: 30rem; width: 20rem;">
+        <form [formGroup]="registerForm" action="" class=" p-5  align-items-center" style="background-color:rgba(0, 0, 0, 0.274); height: 30rem; width: 20rem;">
                 <div class="mt-2 p-2">
                    
-                    <input type="text" name="u1" id="u1"[(ngModel)]="uname" class="form-control" placeholder="User Name">
+                    <input type="text"  formControlName="uname" name="u1" id="u1" class="form-control" placeholder="User Name">
+                </div>
+                <div *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+                    <p class="text-danger"> in valid input</p>
                 </div>
                 <div class="mt-2 p-2">
-                    <input type="text"name="ac1" id="ac1" [(ngModel)]="acnum" class="form-control" placeholder="Account Number">
+                    <input type="text"name="ac1"  formControlName="acno" id="ac1" class="form-control" placeholder="Account Number">
+                </div>   <div *ngIf="this.registerForm.get('acno')?.errors &&this.registerForm.get('acno')?.touched">
+                    <p class="text-danger"> in valid input</p>
                 </div>
                 <div class="mt-2 p-2">
-                    <input type="password"name="p1" id="p1"  [(ngModel)]="paswrd" class="form-control" placeholder="password">
+                    <input type="password"name="p1" id="p1"  formControlName="psw" class="form-control" placeholder="password">
+                </div>
+                <div *ngIf="this.registerForm.get('psw')?.errors && this.registerForm.get('psw')?.touched">
+                    <p class="text-danger"> in valid input</p>
                 </div>
                 <div class="d-flex flex-row justify-content-center  align-items-center mt-5 w-5">
                     <button  type="button" class="btn" (click)="register()" style="background-color: black; color: aliceblue;">Register</button>
